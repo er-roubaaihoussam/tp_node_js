@@ -1,0 +1,67 @@
+<html>
+
+<head>
+  <title>Express</title>
+  <link rel="stylesheet" href="./stylesheets/style.css">
+</head>
+
+<body>
+  
+  <h1>Express</h1>
+  <p>Welcome to Express</p>
+  <h3>ajouter un utilisateur</h1>
+  <form method="post" action="/users">
+    <label for="formulaire">id:</label>
+    <input id="formulaire" name="id" type="text"><br/>
+
+    <label for="username">username:</label>
+    <input id="username" name="username" type="text"><br/>
+
+
+    <label for="email">email:</label>
+    <input id="email" name="email" type="text"><br/>
+
+    <label for="password">password:</label>
+    <input id="password" name="password" type="text"><br/>
+
+    <label for="role">role:</label>
+    <input id="role" name="role" type="text"><br/>
+
+    
+
+    <input type="submit" value="ok"><br/>
+    <hr>
+    <h3>liste des utilisateurs:</h3>
+    <script >
+     fetch('http://localhost:3000/users')
+    .then(response=>response.json()).then(data=>{
+              var n=data.length;
+              var text=''
+              text+='<table border="1">';
+              text+='<tr><td>id</td><td>username</td><td>email</td><td>password</td><td>role</td></tr>';
+              
+              for(var i=0;i<n;++i)
+              {
+                  text+='<tr>';
+                
+                  text+='<td>'+String(data[i].id)+'</td>';
+                  text+='<td>'+data[i].username+'</td>';
+                  text+='<td>'+data[i].email+'</td>';
+                  text+='<td>'+data[i].password+'</td>';
+                  text+='<td>'+data[i].role+'</td>';
+                    
+                
+                text+='</tr>';
+
+              }
+              text+='</table>';
+              document.body.innerHTML+=text;
+            })
+    </script>
+    
+
+
+  </form>
+</body>
+
+</html>
